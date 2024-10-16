@@ -2,6 +2,7 @@ import argparse
 
 from create_excel_table import build_excel_table
 from votation_data import build_data_to_table, get_votation_data
+from sections_places_br import section_places_locales
 
 # Criar o parser
 parser = argparse.ArgumentParser(description='Processar os argumentos candidate_name, city_code, file_name, election_year.')
@@ -26,7 +27,9 @@ print(f"Código da Cidade: {city_code}")
 print(f"Nome do Arquivo: {file_name}")
 print(f"Ano da eleição: {election_year}\n")
 
-votation_data = get_votation_data(candidate_name, city_code, file_name)
+section_place = section_places_locales[str(city_code)]
+
+votation_data = get_votation_data(candidate_name, city_code, file_name, section_place)
 votation_data_to_table = build_data_to_table(votation_data)
 
 table_tab_title=f"Votação seções {candidate_name}"
